@@ -58,7 +58,7 @@ class TruckFormController extends Controller
         }
 
         $truckForm = new TruckForm();
-        $truckForm->fill($request->only(['make', 'year', 'owner', 'total_owners', 'comments']))->save();
+        $truckForm->fill($request->only(['truck_name_id', 'year', 'owner', 'total_owners', 'comments']))->save();
 
         return redirect()->route('truck.index');
     }
