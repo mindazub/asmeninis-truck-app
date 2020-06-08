@@ -12,7 +12,7 @@ Test excercise for asmeninis.lt
 ## Run the project
 
 - Clone it
-- Db credentials
+- DB credentials
 - composer install
 - php artisan key:generate
 - php artisan migrate:fresh --seed

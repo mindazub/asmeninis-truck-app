@@ -13,6 +13,12 @@ class TruckForm extends Form
     {
         /** @var Collection $truckChoices */
         $truckChoices = TruckName::all(['id', 'name'])->pluck('name', 'id')->toArray();
+
+
+
+        //dd($truckChoices);
+
+
         return $truckChoices;
     }
 
