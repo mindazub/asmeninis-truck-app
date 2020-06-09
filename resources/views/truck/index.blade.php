@@ -20,7 +20,7 @@
                         <th scope="col">Owner</th>
                         <th scope="col">Total Owners</th>
                         <th scope="col">Comments</th>
-                        <th scope="col">Actions</th>
+{{--                        <th scope="col">Actions</th>--}}
                     </tr>
                     </thead>
                     <tbody>
@@ -32,11 +32,11 @@
                         <td>{{ $truck->owner }}</td>
                         <td>{{ $truck->total_owners }}</td>
                         <td>{{ $truck->comments }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-success">Show</button>
-                            <button class="btn btn-sm btn-info">Edit</button>
-                            <button class="btn btn-sm btn-danger">Delete</button>
-                        </td>
+{{--                        <td>--}}
+{{--                            <button class="btn btn-sm btn-success">Show</button>--}}
+{{--                            <button class="btn btn-sm btn-info">Edit</button>--}}
+{{--                            <button class="btn btn-sm btn-danger">Delete</button>--}}
+{{--                        </td>--}}
                     </tr>
                     @if($loop->last)
                     </tbody>

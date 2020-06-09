@@ -16,13 +16,13 @@ class TruckNameSeeder extends Seeder
             'name' => 'Volvo',
         ]);
         TruckName::insert([
-            'name' => 'Mac',
+            'name' => 'VAZ',
         ]);
         TruckName::insert([
-            'name' => 'Maz'
+            'name' => 'Mercedes'
         ]);
         TruckName::insert([
-            'name' => 'Kamaz',
+            'name' => 'GAZ',
         ]);
     }
 }

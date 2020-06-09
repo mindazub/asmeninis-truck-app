@@ -25,7 +25,7 @@ class OwnerNameValidation implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $value  === str_word_count(2);
+        return str_word_count($value) > 1;
     }
 
     /**
@@ -35,6 +35,6 @@ class OwnerNameValidation implements Rule
      */
     public function message()
     {
-        return 'The name You entered must be two words!';
+        return 'The name You entered must be two or more words!';
     }
 }
