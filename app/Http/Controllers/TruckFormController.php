@@ -33,15 +33,15 @@ class TruckFormController extends Controller
                 return $q->orderBy('truck_names.name', $sortOrder);
             })
             ->when($search, function ($q) use ($search) {
-                return $q->whereHas('make', function ($q) use ($search) {
+                return $q->whereHas('truckName', function ($q) use ($search) {
                     return $q->where('name', 'like', '%' . $search . '%');
                 })
                     ->orWhere('year', 'like', '%' . $search . '%')
                     ->orWhere('owner', 'like', '%' . $search . '%')
-                    ->orWhere('total_owner', 'like', '%' . $search . '%')
+                    ->orWhere('total_owners', 'like', '%' . $search . '%')
                     ->orWhere('comments', 'like', '%' . $search . '%');
             })
-            ->get();
+            ->paginate(10);
         return view('truck.index', compact('trucks'));
     }
 

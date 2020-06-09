@@ -11,21 +11,14 @@
         </p>
 
         <p>
-
                 <form action="{{ route('truck.index') }}" method="get" class="sidebar-form">
                     <div class="input-group">
-                        <input type="search" name="q" class="form-control" placeholder="Search...">
+                        <input type="search" value="{{ request()->input('q') }}" name="q" class="form-control" placeholder="Search...">
 
-                       <button type="submit" name="search" id="search-btn" class="btn btn-sm btn btn-success">Search
-                      </button>
+                        <input type="submit" class="btn btn-sm btn-success" value="Search">
 
                     </div>
                 </form>
-        <!-- /.search form -->
-        </p>
-
-        <p>
-
         </p>
 
         @forelse($trucks as $truck)
@@ -84,6 +77,13 @@
                     @if($loop->last)
                     </tbody>
                 </table>
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-3">
+                        {{ $trucks->links() }}
+                    </div>
+                </div>
+
             @endif
         @empty
             <h1>No records of trucks</h1>
