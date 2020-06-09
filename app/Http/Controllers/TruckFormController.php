@@ -19,11 +19,30 @@ class TruckFormController extends Controller
      */
     public function index(): View
     {
-        $trucks = TruckForm::all();
 
-        $truckNames = TruckName::all();
-
-        return view('truck.index', compact('trucks', 'truckNames'));
+        $sortBy = request()->input('sort_by');
+        $sortOrder = request()->input('sort_order');
+        $search = request()->input('q');
+        $trucks = TruckForm::with('truckName')
+            ->when($sortBy != null && $sortBy != 'make', function ($q) use ($sortOrder, $sortBy) {
+                return $q->orderBy($sortBy, $sortOrder);
+            })
+            ->when($sortBy == 'make', function ($q) use ($sortOrder) {
+                $q->join('truck_names', 'truck_forms.truck_name_id', '=', 'truck_names.id');
+                $q->select(['truck_names.*', 'truck_forms.*']);
+                return $q->orderBy('truck_names.name', $sortOrder);
+            })
+            ->when($search, function ($q) use ($search) {
+                return $q->whereHas('make', function ($q) use ($search) {
+                    return $q->where('name', 'like', '%' . $search . '%');
+                })
+                    ->orWhere('year', 'like', '%' . $search . '%')
+                    ->orWhere('owner', 'like', '%' . $search . '%')
+                    ->orWhere('total_owner', 'like', '%' . $search . '%')
+                    ->orWhere('comments', 'like', '%' . $search . '%');
+            })
+            ->get();
+        return view('truck.index', compact('trucks'));
     }
 
 

@@ -5,21 +5,64 @@
 
 
         <h1>All Trucks table</h1>
-        <small>
+
+        <p>
             <a class="btn btn-sm btn-success" href="{{ route('truck.create') }}">Add New Truck</a>
-        </small>
+        </p>
+
+        <p>
+
+                <form action="{{ route('truck.index') }}" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="search" name="q" class="form-control" placeholder="Search...">
+
+                       <button type="submit" name="search" id="search-btn" class="btn btn-sm btn btn-success">Search
+                      </button>
+
+                    </div>
+                </form>
+        <!-- /.search form -->
+        </p>
+
+        <p>
+
+        </p>
 
         @forelse($trucks as $truck)
             @if($loop->first)
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Year</th>
-                        <th scope="col">Owner</th>
-                        <th scope="col">Total Owners</th>
-                        <th scope="col">Comments</th>
+                        <th scope="col">
+                            <a href="{{ route('truck.index', ['sort_by'=> 'id', 'sort_order' => request()->input('sort_order', 'desc') == 'desc'? 'asc' : 'desc']) }}">
+                                #
+                            </a>
+                        </th>
+                        <th scope="col">
+                            <a href="{{ route('truck.index', ['sort_by'=> 'make', 'sort_order' => request()->input('sort_order', 'desc') == 'desc'? 'asc' : 'desc']) }}">
+                                Model
+                            </a>
+                        </th>
+                        <th scope="col">
+                            <a href="{{ route('truck.index', ['sort_by'=> 'year', 'sort_order' => request()->input('sort_order', 'desc') == 'desc'? 'asc' : 'desc']) }}">
+                                Year
+                            </a>
+                        </th>
+                        <th scope="col">
+                            <a href="{{ route('truck.index', ['sort_by'=> 'owner', 'sort_order' => request()->input('sort_order', 'desc') == 'desc'? 'asc' : 'desc']) }}">
+                                Owner
+                            </a>
+                        </th>
+                        <th scope="col">
+                            <a href="{{ route('truck.index', ['sort_by'=> 'total_owners', 'sort_order' => request()->input('sort_order', 'desc') == 'desc'? 'asc' : 'desc']) }}">
+                                Total Owners
+                            </a>
+                        </th>
+                        <th scope="col">
+                            <a href="{{ route('truck.index', ['sort_by'=> 'year', 'sort_order' => request()->input('sort_order', 'desc') == 'desc'? 'asc' : 'desc']) }}">
+                                Comments
+                            </a>
+                        </th>
 {{--                        <th scope="col">Actions</th>--}}
                     </tr>
                     </thead>
