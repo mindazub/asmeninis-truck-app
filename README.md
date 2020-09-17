@@ -2,7 +2,7 @@
 
 ## Truck project APP
 
-Test excercise for asmeninis.lt
+Test excercise
 
 
 - Truck List, Create
